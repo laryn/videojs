@@ -1,19 +1,28 @@
 # Video.js
 
-Video.js is a HTML5-based video player with a built-in Flash fallback for older browsers. This means that videos can be played on nearly all devices and operating systems, provided the right codecs are used.
+Video.js is a HTML5-based video player with a built-in Flash fallback for older
+browsers. This means that videos can be played on nearly all devices and
+operating systems, provided the right codecs are used.
 
-This module is a support module for Video.js. It doesn't contain Video.js itself, but integrates it with the File, Link and Video modules after you've installed it.
+This module is a support module for `Video.js` -- you can use the bundled
+version, CDN version, or download your own version and this module integrates it
+with the File, Link and Video modules after you've installed it.
 
 ## Includes
 
-- Support for Video.js 4.0.0+
+- Support for Video.js 4.0.0+ (CDN and Bundled library default to 8.17.3)
 - Support for subtitle tracks.
 - Support for looping, hiding player controls and changing preload behavior.
-- Setup above settings for each field and view individually, as well as width and height of the player.
-- Load the Video.js files from the Video.js CDN - downloading and installing the player is not necessary.
+- Setup above settings for each field and view individually, as well as width
+  and height of the player.
+- Load the Video.js files from the Video.js CDN - downloading and installing the
+  player is not necessary.
 - Locate the Video.js files using the Libraries API.
-- Sub-module: Video.js HTTP Live Streaming. Extends the functionality of Video.js by combining multiple m3u8 files into one file that can be used for bandwidth switching.
-- Sub-module: VideoJS Filter. Provides a filter so videos can be inserted into any entity with a textarea field: nodes, blocks and so on.
+- Sub-module: Video.js HTTP Live Streaming. Extends the functionality of
+  Video.js by combining multiple m3u8 files into one file that can be used for
+  bandwidth switching.
+- Sub-module: VideoJS Filter. Provides a filter so videos can be inserted into
+  any entity with a textarea field: nodes, blocks and so on.
 
 ## Required dependencies
 
@@ -27,11 +36,19 @@ None
 
 ## Installation
 
-1. Install the Video.js module by copying the sources to a modules directory, such as `modules`.
-2. Download the Video.js library from http://videojs.com. Extract the module to `libraries/video-js` and make sure that `libraries/video-js/video.js` exists.
-   NOTE: you can skip this step and use the Video.js version from the Video.js Content Delivery Network (CDN).
-3. In your Backdrop site, enable the module.
-4. If not yet created, create a File field for one of your content types at Structure -> Content types -> [type] -> Manage fields. Make sure the allowed extensions contain only HTML5 video extensions, such as mp4,  webm, mov and ogv. Use the `Number of values` setting to allow users to upload alternative versions of the same video, for instance MP4 and Ogg. To allow users to upload a poster image, also allow png, gif or jpg.
+1. Install the Video.js module by copying the sources to a modules directory,
+   such as `modules`.
+2. In your Backdrop site, enable the module.
+3. If you plan to use the bundled or CDN version of the library, skip this step.
+   If you'd like to download your own version of the library, download it from
+   https://videojs.com. Extract the module to `libraries/video-js` and make
+   sure that `libraries/video-js/video.js` exists.
+4. If not yet created, create a File field for one of your content types at
+   **Structure -> Content types -> [type] -> Manage fields**. Make sure the
+   allowed extensions contain only HTML5 video extensions, such as mp4,  webm,
+   mov and ogv. Use the `Number of values` setting to allow users to upload
+   alternative versions of the same video, for instance MP4 and Ogg. To allow
+   users to upload a poster image, also allow png, gif or jpg.
 5. At the Manage display tab, select `Video.js` for your File field.
 6. Create a piece of content with the configured field.
 7. Create a poster image and upload the image in the file field field created in step #4.
@@ -128,11 +145,13 @@ The Video.js module exposes the theme function 'videojs' to write a Video.js pla
 - Report bugs for this *Backdrop module* at `<https://github.com/backdrop-contrib/videojs>`.
 - Report bugs for the *player* at `<https://github.com/videojs/video.js/issues>`.
 
-## License
-
-This project is GPL v2 software. See the LICENSE.txt file in this directory for complete text.
-
 ## Maintainers
+
+- Herb v/d Dool (https://github.com/herbdool/)
+
+## Credits
+
+Ported to Backdrop CMS by
 
 - Herb v/d Dool (https://github.com/herbdool/)
 
@@ -142,3 +161,7 @@ Originally written for Drupal by
 - Jorrit Schippers (https://www.drupal.org/u/jorrit)
 
 This module is seeking additional maintainers.
+
+## License
+
+This project is GPL v3 software. See the LICENSE.txt file in this directory for complete text.

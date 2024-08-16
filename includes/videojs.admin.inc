@@ -18,6 +18,7 @@ function videojs_settings_form() {
   );
 
   $locations = array(
+    'bundled' => t('Bundled version locally'),
     'cdn' => t('Video.js Content Delivery Network (CDN)'),
     'path' => t('Specified path'),
   );
@@ -54,7 +55,7 @@ function videojs_settings_form() {
 
   videojs_utility::getDisplaySettingsForm($form['options']);
 
-  // Add a submit button
+  // Add a submit button.
   $form['actions']['#type'] = 'actions';
   $form['actions']['submit'] = array(
     '#type' => 'submit',
@@ -106,16 +107,16 @@ function videojs_settings_form_submit($form, &$form_state) {
   $config = config('videojs.settings');
   $config->set('location', $form_state['values']['videojs_location']);
   $config->set('directory', $form_state['values']['videojs_directory']);
-  
+
   $options = videojs_utility::getDisplaySettingsFormResults($form_state['values']['options']);
   unset($form_state['values']['options']);
 
-  // Add the results so they can get saved
+  // Add the results so they can get saved.
   foreach ($options as $k => $v) {
     $config->set($k, $v);
   }
   $config->save();
-  if ($form_state['values']['videojs_location'] != 'cdn') {
+  if ($form_state['values']['videojs_location'] != 'cdn' && $form_state['values']['videojs_location'] != 'bundled') {
     backdrop_set_message(t('The Video.js library (version @version) was successfully found at %directory.', array('@version' => $form_state['videojs_version'], '%directory' => $form_state['videojs_directory'])));
   }
 }

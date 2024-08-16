@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * Provides an HTML5-compatible with Flash-fallback video player.
+ * Provides an HTML5-compatible video player.
  *
  * This module provides functionality for loading the Video.js library and
  * formatters for CCK FileFields.
  */
 
-define('VIDEOJS_DEFAULT_VERSION', '4.0');
+define('VIDEOJS_DEFAULT_VERSION', '8.17.3');
 
 /**
  * Implements hook_autoload_info().
@@ -160,6 +160,9 @@ function videojs_field_formatter_view($entity_type, $entity, $field, $instance, 
           $item['label'] = $language[1];
         }
       }
+    }
+    if (empty($item['label']) && !empty($item['description'])) {
+      $item['label'] = $item['description'];
     }
 
     $hastracks = TRUE;
@@ -322,12 +325,15 @@ function videojs_field_formatter_settings_form($field, $instance, $view_mode, $f
   return $form;
 }
 
+/**
+ *
+ */
 function videojs_field_formatter_settings_form_validate($form, &$form_state) {
   $value = backdrop_array_get_nested_value($form_state['values'], $form['#parents']);
   $options = videojs_utility::getDisplaySettingsFormResults($value);
   $value = array_merge($value, $options);
 
-  // The fields need to be both entered or both empty
+  // The fields need to be both entered or both empty.
   if (empty($value['width']) != empty($value['height'])) {
     form_error($form[empty($value['width']) ? 'height' : 'width'], t('The width and height field need to be both set or both empty.'));
   }
@@ -392,10 +398,16 @@ function videojs_add($add = TRUE) {
   $config = config('videojs.settings');
 
   switch ($config->get('location')) {
+    case 'bundled':
+      $path = BACKDROP_ROOT . backdrop_get_path('module', 'videojs') . '/library';
+      $remote = FALSE;
+      break;
+
     case 'path':
       $path = $config->get('directory');
       $remote = strpos($path, '://') !== FALSE || strncmp('//', $path, 2) === 0;
       break;
+
     case 'libraries':
       if (!module_exists('libraries')) {
         return FALSE;
@@ -455,9 +467,12 @@ function videojs_add($add = TRUE) {
 function videojs_get_version($path = NULL) {
   $version = NULL;
   $config = config('videojs.settings');
-  
+
   if ($config->get('location') == 'cdn') {
     return VIDEOJS_DEFAULT_VERSION;
+  }
+  elseif ($config->get('location') == 'bundled') {
+    return '8.17.3';
   }
 
   if (!isset($path)) {
