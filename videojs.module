@@ -400,7 +400,7 @@ function videojs_add($add = TRUE) {
 
   switch ($config->get('location')) {
     case 'bundled':
-      $path = BACKDROP_ROOT . backdrop_get_path('module', 'videojs') . '/library';
+      $path = backdrop_get_path('module', 'videojs') . '/library';
       $remote = FALSE;
       break;
 
@@ -430,13 +430,10 @@ function videojs_add($add = TRUE) {
   $jsopts = array('group' => JS_LIBRARY, 'preprocess' => !$remote, 'type' => $remote ? 'external' : 'file', 'weight' => 1);
   $cssdata = $path . '/video-js.css';
   $cssopts = array('preprocess' => !$remote, 'type' => $remote ? 'external' : 'file');
-  $swfdata = 'videojs.options.flash.swf = "' . file_create_url($path . '/video-js.swf') . '"';
-  $swfopts = array('group' => JS_LIBRARY, 'type' => 'inline', 'weight' => 5);
 
   if ($add && !$added) {
     backdrop_add_js($jsdata, $jsopts);
     backdrop_add_css($cssdata, $cssopts);
-    backdrop_add_js($swfdata, $swfopts);
 
     $added = TRUE;
   }
@@ -444,7 +441,6 @@ function videojs_add($add = TRUE) {
   return array(
     'js' => array(
       $jsdata => $jsopts,
-      $swfdata => $swfopts,
     ),
     'css' => array(
       $cssdata => $cssopts,
