@@ -211,7 +211,7 @@ class videojs_utility {
     else {
       $otherinstances = field_info_instances($entity_type, $bundle);
       foreach ($otherinstances as $otherinstance) {
-        $otherfield = field_info_field_by_id($otherinstance['field_name']);
+        $otherfield = field_info_field($otherinstance['field_name']);
         if (in_array($otherfield['type'], $types)) {
           $resultfields[$otherinstance['field_name']] = $otherinstance['label'];
         }
