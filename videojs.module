@@ -326,7 +326,8 @@ function videojs_field_formatter_settings_form($field, $instance, $view_mode, $f
 }
 
 /**
- *
+ * Validation callback
+ * @see videojs_field_formatter_settings_form()
  */
 function videojs_field_formatter_settings_form_validate($form, &$form_state) {
   $value = backdrop_array_get_nested_value($form_state['values'], $form['#parents']);
