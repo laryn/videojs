@@ -153,14 +153,13 @@ The Video.js module exposes the theme function 'videojs' to write a Video.js pla
 
 Ported to Backdrop CMS by
 
-- Herb v/d Dool (https://github.com/herbdool/)
+- [Herb v/d Dool](https://github.com/herbdool/)
+- This module is seeking additional maintainers.
 
 Originally written for Drupal by
 
 - Heshan Wanigasooriya (https://www.drupal.org/u/heshanlk)
 - Jorrit Schippers (https://www.drupal.org/u/jorrit)
-
-This module is seeking additional maintainers.
 
 ## License
 
