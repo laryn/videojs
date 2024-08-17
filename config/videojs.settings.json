@@ -1,6 +1,6 @@
 {
     "_config_name": "videojs.settings",
-    "location": "cdn",
+    "location": "bundled",
     "directory": "libraries/video-js",
     "width": 640,
     "height": 360,
