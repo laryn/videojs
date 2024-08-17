@@ -1,7 +1,6 @@
 # Video.js
 
-Video.js is a HTML5-based video player with a built-in Flash fallback for older
-browsers. This means that videos can be played on nearly all devices and
+Video.js is a HTML5-based video player. This means that videos can be played on nearly all devices and
 operating systems, provided the right codecs are used.
 
 This module is a support module for `Video.js` -- you can use the bundled
